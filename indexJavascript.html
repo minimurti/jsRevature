@@ -95,7 +95,7 @@
 
 
 
-
+    
     </form>
   </div>
   <a>Click Here</a>
@@ -114,66 +114,38 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+	  
   <script>
+//-----------------------------------------------------------------------------------------------
 
 
-
-
-  function get_USA() {
-
-    console.log("Part 1: \n")
-    //console.log("sup bro");
-
+function get_USA() {
     var seartext = "USA";
-    var tagval = $("span");
+    var tagval = document.body.getElementsByTagName("*");
      for (var i = 0; i < tagval.length; i++) {
-        if(tagval[i].textContent == seartext){
-
+        var n1 = tagval[i].textContent.search(seartext);
+        if(n1 != -1){
             console.log((tagval[i].textContent));
            break;
         }
-
-      
      
      }
+  
+}
 
-  }
-
-
-
-
+get_USA();
 
 
-  function get_People_In_Sales(){
-    console.log("Part 2: \n");
 
-    var table = $("table")[0];
+
+
+
+ //-------------------------------------------------------------------------------------2222
+
+
+function get_People_In_Sales(){
+    var table = document.getElementsByTagName("table")[0];
     for (var i = 0; i < table.rows.length;i++){
      var cells =  table.rows[i].cells;
          if(cells[1].textContent === "Sales"){
@@ -183,32 +155,46 @@
   
 }
 
+get_People_In_Sales();
 
 
+
+
+//-----------------------------------------------------------------------------------------------3
+
+function get_Anchor_Children(){
+ 
+    var anchors = document.body.getElementsByTagName("a");
+    for(var i = 0; i < anchors.length; i++){
+        
+
+        var anchorBabies = anchors[i].childNodes
+        for(var j = 0; j < anchorBabies.length; j++){
+            if(anchorBabies[j].tagname = 'span')
+            if(anchorBabies[j].innerHTML)
+                console.log(anchorBabies[j].innerHTML);
+
+
+        }
+
+
+
+
+
+    }
+
+
+}
 
 get_Anchor_Children();
-function get_Anchor_Children(){
-    console.log("Part 3: \n");
-    var anchorBabies = $("a").has("span").find("span");
-
-    for(var j = 0; j < anchorBabies.length; j++){
-             console.log(anchorBabies[j].textContent);
-     }
 
 
 
 
 
-
-
- }
-
-
-
+console.log("4. Hobbies");
 function Hobies(){
-  console.log("4. Hobbies");
-
-    var e =  $('select[name$="hobbies"]')[0];
+    var e = document.getElementsByName("hobbies")[0];
     var hobby = e.options[e.selectedIndex].innerHTML;
     hobby += ' ' + e.options[e.selectedIndex].value;
     console.log(hobby);
@@ -217,44 +203,27 @@ function Hobies(){
 
 Hobies();
 
-
+document.getElementsByName("hobbies")[0].onchange = Hobies();
 
 
 
 function get_custom_attribute(){
-
-  console.log("Part 5. \n");
-var elements = $("[data-customAttr]");
+var elements = document.querySelectorAll('[data-customAttr]');
 for (var i = 0; i <elements.length;i++){
     console.log(elements[i].dataset.customattr);
     }
 }
 
-
 get_custom_attribute();
 
 
-
-$(document).ready(function(){
-  $("#num1").change(function(){
-    myFunction();
-  });
-});
-
-
-$(document).ready(function(){
-  $("#num2").change(function(){
-    myFunction();
-  });
-});
-
-
+document.getElementById("num1").onchange = function() {myFunction()};
+document.getElementById("num2").onchange = function() {myFunction()};
 
 function myFunction(){
-  console.log("Part 6. \n");
 
-        let x = $('#num1').val();
-        let y = $('#num2').val();
+        let x = document.getElementById("num1").value;
+        let y = document.getElementById("num2").value;
     
     if(x && y){
         document.getElementById('sum').innerHTML = `${Number(x) + Number(y)}`;
@@ -264,32 +233,47 @@ function myFunction(){
 
 
 
+/////////////////////////////////////////////////////////////////
 
+
+document.getElementsByName("skills")[0].onchange = function() {doYouEvenLiftBro()};
 
 function doYouEvenLiftBro(){
-    let x = $('select[name$="skills"]')[0].value;
+    let x = document.getElementsByName("skills")[0].value;
     console.log(`Bro I bet you don't even lift ${x}`);
 }
 
-
-
+/////////////////////////////////////////////////////////////////////////////
 
 
 
 
 
 var oldFavorite;
+var ColorRadio = document.getElementsByName("favoriteColor");
+
+function colorFunctions(){
+    for(var i =0; i<ColorRadio.length; i++){
+
+        document.getElementsByName("favoriteColor")[i].onchange = function() {disLoyal()};
+
+    }
 
 
+}
+
+
+colorFunctions();
+
+var ColorRadio = document.getElementsByName("favoriteColor");
 
 function disLoyal(){
-  var ColorRadio = $('input[name$="favoriteColor"]');
     if(oldFavorite)
         alert(`The color ${oldFavorite} wants to inform you that you are an unloyal color enthusiest`);
 
         for (var i=0; i<ColorRadio.length; i++) {
             if ( ColorRadio[i].checked ) { // radio checked?
-                oldFavorite = ColorRadio[i].value;
+                oldFavorite = document.getElementsByName("favoriteColor")[i].value;
                 break; // and break out of for loop
             }
         }
@@ -300,68 +284,55 @@ function disLoyal(){
 }
 
 
-
-
 function recolorall(){
-  var ColorRadio = $('input[name$="favoriteColor"]');
 
-  for(var i =0; i<ColorRadio.length; i++){
+    for(var i =0; i<ColorRadio.length; i++){
 
-      var newItem = document.createElement("DIV");  
+        var newItem = document.createElement("DIV");  
 
-      //ColorRadio[i].style.backgroundColor = `${oldFavorite}`;
-      
-      
+        //ColorRadio[i].style.backgroundColor = `${oldFavorite}`;
+        
+        
 
 
-      // create wrapper container
-      var wrapper = document.createElement('div');
-      
-      // insert wrapper before el in the DOM tree
-      ColorRadio[i].parentNode.insertBefore(wrapper, ColorRadio[i]);
-      
-      // move el into wrapper
-      wrapper.appendChild(ColorRadio[i]);
+        // create wrapper container
+        var wrapper = document.createElement('div');
+        
+        // insert wrapper before el in the DOM tree
+        ColorRadio[i].parentNode.insertBefore(wrapper, ColorRadio[i]);
+        
+        // move el into wrapper
+        wrapper.appendChild(ColorRadio[i]);
 
-      ColorRadio[i].parentNode.style.backgroundColor = `${oldFavorite}`;
-      ColorRadio[i].parentNode.style.display = "inline-block";//makes it so the div doesnt take the whole line
+        ColorRadio[i].parentNode.style.backgroundColor = `${oldFavorite}`;
+        ColorRadio[i].parentNode.style.display = "inline-block";//makes it so the div doesnt take the whole line
 
-  }
+    }
 
 
 }
 
 
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
 employees = document.getElementsByClassName("empName");
 
 
+function empCreater(){
+    for(var i =0; i<ColorRadio.length; i++){
+
+        employees[i].onmouseover = function() {empHIDE(this)};
+
+    }
 
 
+}
 
 
-
-
-$(document).ready(function(){
-  $('select[name$="skills"]').change(doYouEvenLiftBro);
-
-  $('input[name$="favoriteColor"]').change(disLoyal);
-
-
-  $(".empName").mouseover(function(){
-    empHIDE(this);
-  });
-
-  $("#helloWorld").click(function(){
-    nowWAITONEMINUTE();
-  });
-
-
-});
-
-$(document).ready(function(){
-
-});
-
+empCreater();
 
 function empHIDE(i){
     
@@ -377,10 +348,9 @@ function empHIDE(i){
 
 
 function showTime(){
-
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    $("#currentTime").html(time);
+    document.getElementById("currentTime").innerHTML = time;
 }
 
 
@@ -392,7 +362,7 @@ window.setInterval(function(){
 
 
 
-
+document.getElementById("helloWorld").onclick = function() {nowWAITONEMINUTE()}; 
 
 
 
@@ -404,57 +374,41 @@ function nowWAITONEMINUTE(){
 }
 
 function colorChange(){
-    $("#helloWorld").css("color", "red");
+    document.getElementById("helloWorld").style.color = "red"
 }
+
+
+
 
 
 function walkTheDOM(node, func){
 
-if(node){
-func(node);
+    if(node){
+    func(node);
+
+    
+    var gothroughme = node.childNodes;
+
+    if(gothroughme && gothroughme.length){
+        for(var i = 0; i < gothroughme.length; i++){
+            if(gothroughme[i])
+                walkTheDOM(gothroughme,func);
+
+        }
+    }
+    }
 
 
-var gothroughme = node.childNodes;
+}
 
-if(gothroughme && gothroughme.length){
-    for(var i = 0; i < gothroughme.length; i++){
-        if(gothroughme[i])
-            walkTheDOM(gothroughme,func);
+function allColor(insidethis){
+    if(insidethis && insidethis.innerHTML ){
+        console.log(insidethis.innerHTML);
 
     }
 }
-}
 
-
-}
-  
-  
-  
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </script>
   
 </body>
 </html>
