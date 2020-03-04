@@ -160,8 +160,6 @@ When user hovers over an employees name:
 	Hide the name if shown.
 	Show the name if hidden.
 
-
-
 10. Current Time
 Regarding this element:
 	<h5 id="currentTime"></h5>

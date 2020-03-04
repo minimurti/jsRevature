@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>DOM</title>
+</head>
+<body>
+  
+  <div>
+    <div>
+      <h3>Sum: <span id="sum"></span></h3>
+      <h5 id="currentTime"></h5>
+    </div>
+    <div>
+      <h1>United <span data-customAttr="USA">States</span> of America (<span>USA</span>)</h1>
+      <div><a>Click Here</a><a>Click Here</a><a>Click Here</a><a>Click Here</a><a>Click Here</a></div>
+      <a>Click Here</a>
+      <a>Click <span>Here1</span></a>
+      <a>Click Here</a>
+      <div>
+	  <select name="colors">
+	    <option value="green">Green</option>
+	    <option value="blue">Blue</option>
+	    <option value="red" selected="selected">Red</option>
+	    <option value="purple">Purple</option>
+	    <option value="yellow" selected="selected">Yellow</option>
+	  </select>
+      </div>
+    </div>
+    <p id="helloWorld">Hello, World!</p>
+    <div>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Department</th>
+        </tr>
+        <tr>
+          <td class="empName">John</td>
+          <td>Sales</td>
+        </tr>
+        <tr>
+          <td class="empName">Amy</td>
+          <td>Finance</td>
+        </tr>
+        <tr>
+          <td class="empName">Austin</td>
+          <td>Sales</td>
+        </tr>
+        <tr>
+          <td class="empName">Katie</td>
+          <td>Marketing</td>
+        </tr>
+        <tr>
+          <td class="empName" data-customAttr="court">Courtney</td>
+          <td>Sales</td>
+        </tr>
+        <tr>
+          <td class="empName">Scout</td>
+          <td>Sales</td>
+        </tr>
+      </table>
+    </div>
+    <form id="firstForm">
+      <a>Click <span>Here2</span></a>
+	  <input type="text" data-customAttr="7"/><br/>
+	  <input type="text" data-customAttr="24"/><br/>
+	  <input type="radio" name="favoriteAnimal" value="dog"/>Dog<br/>
+	  <input type="radio" name="favoriteColor" value="blue"/>Blue<br/>
+	  <input id="num1" class="nums" type="text"/><br/>
+	  <input type="radio" name="favoriteAnimal" value="cat"/>Cat<br/>
+	  <input type="radio" name="favoriteColor" value="red"/>Red<br/>
+	  <input type="radio" name="favoriteAnimal" value="horse"/>Horse<br/>
+	  <input type="radio" name="favoriteAnimal" value="dolphin"/>Dolphin<br/>
+	  <a>Click <span>Here</span></a><br/>
+	  <input type="radio" name="favoriteAnimal" value="eagle"/>Eagle<br/>
+	  <input type="radio" name="favoriteColor" value="green"/>Green<br/>
+	  <input type="radio" name="favoriteColor" value="orange"/>Orange<br/>
+	  <select name="hobbies">
+	    <option value="photography">Photography</option>
+	    <option value="football" selected="selected">Football</option>
+	    <option value="kayaking" selected="selected">Kayaking</option>
+	    <option value="hiking">Hiking</option>
+	    <option value="programming" selected="selected">Programming</option>
+	  </select>
+	  <input id="num2" class="nums" type="text"/>
+	  <select name="skills">
+	    <option value="java">Java</option>
+	    <option value="net">.NET</option>
+	    <option value="dom" selected="selected">DOM</option>
+	    <option value="html">HTML</option>
+	    <option value="css">CSS</option>
+	    <option value="javascript" selected="selected">Javascript</option>
+    </select>
+    
+
+
+
+
+    </form>
+  </div>
+  <a>Click Here</a>
+  <a>Click <span data-customAttr="500">Here3</span></a>
+  <a>Click Here</a>
+
+
+<br>
+<br>
+
+<input type="text" id = "listAdder">
+<ol id = "listToAddTo">
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+
+
+
+
+  function get_USA() {
+
+    console.log("Part 1: \n")
+    //console.log("sup bro");
+
+    var seartext = "USA";
+    var tagval = $("span");
+     for (var i = 0; i < tagval.length; i++) {
+        if(tagval[i].textContent == seartext){
+
+            console.log((tagval[i].textContent));
+           break;
+        }
+
+      
+     
+     }
+
+  }
+
+
+
+
+
+
+  function get_People_In_Sales(){
+    console.log("Part 2: \n");
+
+    var table = $("table")[0];
+    for (var i = 0; i < table.rows.length;i++){
+     var cells =  table.rows[i].cells;
+         if(cells[1].textContent === "Sales"){
+               console.log(cells[0].textContent);
+        }
+    }
+  
+}
+
+
+
+
+get_Anchor_Children();
+function get_Anchor_Children(){
+    console.log("Part 3: \n");
+    var anchorBabies = $("a").has("span").find("span");
+
+    for(var j = 0; j < anchorBabies.length; j++){
+             console.log(anchorBabies[j].textContent);
+     }
+
+
+
+
+
+
+
+ }
+
+
+
+function Hobies(){
+  console.log("4. Hobbies");
+
+    var e =  $('select[name$="hobbies"]')[0];
+    var hobby = e.options[e.selectedIndex].innerHTML;
+    hobby += ' ' + e.options[e.selectedIndex].value;
+    console.log(hobby);
+
+}
+
+Hobies();
+
+
+
+
+
+function get_custom_attribute(){
+
+  console.log("Part 5. \n");
+var elements = $("[data-customAttr]");
+for (var i = 0; i <elements.length;i++){
+    console.log(elements[i].dataset.customattr);
+    }
+}
+
+
+get_custom_attribute();
+
+
+
+$(document).ready(function(){
+  $("#num1").change(function(){
+    myFunction();
+  });
+});
+
+
+$(document).ready(function(){
+  $("#num2").change(function(){
+    myFunction();
+  });
+});
+
+
+
+function myFunction(){
+  console.log("Part 6. \n");
+
+        let x = $('#num1').val();
+        let y = $('#num2').val();
+    
+    if(x && y){
+        document.getElementById('sum').innerHTML = `${Number(x) + Number(y)}`;
+    }
+}
+
+
+
+
+
+
+function doYouEvenLiftBro(){
+    let x = $('select[name$="skills"]')[0].value;
+    console.log(`Bro I bet you don't even lift ${x}`);
+}
+
+
+
+
+
+
+
+
+var oldFavorite;
+
+
+
+function disLoyal(){
+  var ColorRadio = $('input[name$="favoriteColor"]');
+    if(oldFavorite)
+        alert(`The color ${oldFavorite} wants to inform you that you are an unloyal color enthusiest`);
+
+        for (var i=0; i<ColorRadio.length; i++) {
+            if ( ColorRadio[i].checked ) { // radio checked?
+                oldFavorite = ColorRadio[i].value;
+                break; // and break out of for loop
+            }
+        }
+
+
+        recolorall();
+
+}
+
+
+
+
+function recolorall(){
+  var ColorRadio = $('input[name$="favoriteColor"]');
+
+  for(var i =0; i<ColorRadio.length; i++){
+
+      var newItem = document.createElement("DIV");  
+
+      //ColorRadio[i].style.backgroundColor = `${oldFavorite}`;
+      
+      
+
+
+      // create wrapper container
+      var wrapper = document.createElement('div');
+      
+      // insert wrapper before el in the DOM tree
+      ColorRadio[i].parentNode.insertBefore(wrapper, ColorRadio[i]);
+      
+      // move el into wrapper
+      wrapper.appendChild(ColorRadio[i]);
+
+      ColorRadio[i].parentNode.style.backgroundColor = `${oldFavorite}`;
+      ColorRadio[i].parentNode.style.display = "inline-block";//makes it so the div doesnt take the whole line
+
+  }
+
+
+}
+
+
+employees = document.getElementsByClassName("empName");
+
+
+
+
+
+
+
+
+$(document).ready(function(){
+  $('select[name$="skills"]').change(doYouEvenLiftBro);
+
+  $('input[name$="favoriteColor"]').change(disLoyal);
+
+
+  $(".empName").mouseover(function(){
+    empHIDE(this);
+  });
+
+  $("#helloWorld").click(function(){
+    nowWAITONEMINUTE();
+  });
+
+
+});
+
+$(document).ready(function(){
+
+});
+
+
+function empHIDE(i){
+    
+    if(i.style.color == "white")
+        i.style.color = "black";
+    else{
+        i.style.color = "white";
+    }
+
+
+
+}
+
+
+function showTime(){
+
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    $("#currentTime").html(time);
+}
+
+
+showTime();
+
+window.setInterval(function(){
+    showTime();
+}, 1000);
+
+
+
+
+
+
+
+function nowWAITONEMINUTE(){
+
+    setTimeout(colorChange, 3000);
+   
+
+}
+
+function colorChange(){
+    $("#helloWorld").css("color", "red");
+}
+
+  
+  
+  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</body>
+</html>
